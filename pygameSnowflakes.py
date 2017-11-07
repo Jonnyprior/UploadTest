@@ -19,10 +19,11 @@ pygame.display.set_caption("Snow Animation")
 snow_list = []
 
 # Loop 50 times to add snowflakes in random positions
-for i in range(50):
+for i in range(80):
     x = random.randrange(0, SCREEN_WIDTH)
     y = random.randrange(0, SCREEN_HEIGHT)
-    snow_list.append([x, y])
+    speed = random.randrange(1,4)
+    snow_list.append([x, y, speed])
 
 clock = pygame.time.Clock()
 
@@ -38,8 +39,8 @@ while not done:
     # Process each snowflake in list
     for item in snow_list:
         # Draw snowflake
-        item[1] += 1 # Move snowflake down y column
-        pygame.draw.circle(Main_screen, WHITE, item, 2)
+        item[1] += item[2] # Move snowflake down y column by its speed
+        pygame.draw.circle(Main_screen, WHITE, item[0:2], 2)
 
         # If snowflake moved off the bottom of screen
         if item[1] > SCREEN_HEIGHT:
